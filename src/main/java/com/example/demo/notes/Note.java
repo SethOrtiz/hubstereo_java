@@ -8,11 +8,9 @@ import javax.persistence.*;
 public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
+    private int id;
+    @Column
+    private String content;
     @Column
     private String user_id;
-
-    @Column(length=10485760)
-    private String content;
 }
