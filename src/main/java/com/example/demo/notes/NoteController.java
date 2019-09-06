@@ -31,14 +31,14 @@ public class NoteController {
         return response;
     }
 
-    @GetMapping("/posts/{post_id}")
+    @GetMapping("/notes/{note_id}")
     public NoteResponse getNoteById(@PathVariable String note_id) {
         Object[] note = noteRepository.selectNoteById(Integer.parseInt(note_id)).get(0);
         NoteResponse response = new NoteResponse(note[0], note[1], note[2]);
         return response;
     }
 
-    @PatchMapping("/posts/{post_id}")
+    @PatchMapping("/notes/{note_id}")
     public NoteResponse updateNote(@PathVariable String note_id, @RequestBody Note postBody) {
         noteRepository.updateNote( postBody.getContent(), Integer.parseInt(note_id));
         Object[] note = noteRepository.selectNoteById(Integer.parseInt(note_id)).get(0);
@@ -46,7 +46,7 @@ public class NoteController {
         return response;
     }
 
-    @DeleteMapping("/posts/{post_id}")
+    @DeleteMapping("/notes/{note_id}")
     public NoteResponse deleteNote(@PathVariable String note_id) {
         Object[] note = noteRepository.selectNoteById(Integer.parseInt(note_id)).get(0);
         NoteResponse response = new NoteResponse(note[0], note[1], note[2]);
@@ -57,6 +57,7 @@ public class NoteController {
     @PostMapping("/notes")
     public Note createPost(@RequestBody HashMap<String, String> info) {
         Note note = new Note();
+        note.setUser_id(info.get("user_id"));
         note.setContent(info.get("content"));
         return noteRepository.save(note);
     }

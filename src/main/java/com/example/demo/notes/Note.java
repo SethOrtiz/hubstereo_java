@@ -11,7 +11,7 @@ public class Note {
     private long id;
 
     @Column
-    private String userId;
+    private String user_id;
 
     @Column(length=10485760)
     private String content;
