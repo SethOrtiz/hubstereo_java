@@ -22,7 +22,7 @@ public class NoteController {
     public List getAllNotes() {
         List<Object[]> notes = repository.selectAllNotes();
         return notes.stream()
-                .map(note -> new NoteResponse(note[0], note[1], note[2]))
+                .map(note -> new NoteResponse(note[0], note[2], note[1]))
                 .collect(Collectors.toList());
     }
 
@@ -30,7 +30,7 @@ public class NoteController {
     public List getAllNotesByUser(@PathVariable String user_id) {
         List<Object[]> notes = repository.selectNotesByUserId(user_id);
         return notes.stream()
-                .map(note -> new NoteResponse(note[0], note[1], note[2]))
+                .map(note -> new NoteResponse(note[0], note[2], note[1]))
                 .collect(Collectors.toList());
     }
 
